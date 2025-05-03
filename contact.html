@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us - ISEEFOOD</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .contact-container {
+      max-width: 600px;
+      margin: 80px auto;
+      padding: 20px;
+      background: #e0f2f1;
+      border-radius: 15px;
+    }
+
+    .contact-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .contact-container label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .contact-container input, .contact-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .contact-container button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .contact-container button:hover {
+      background-color: #004d40;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <img src="images/logo.png" alt="ISEEFOOD Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="map.html">Map</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login / Signup</a>
+    </nav>
+  </header>
+
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <form action="mailto:pescazonphilippines@gmail.com" method="post" enctype="text/plain">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Your Feedback</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Send Feedback</button>
+    </form>
+  </div>
+</body>
+</html>

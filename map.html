@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ISEEFOOD Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    #map {
+      height: 90vh;
+    }
+
+    .filter-bar {
+      padding: 10px;
+      background-color: #e0f7fa;
+      text-align: center;
+    }
+
+    .filter-bar select {
+      padding: 8px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <img src="images/logo.png" alt="ISEEFOOD Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="map.html">Map</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login / Signup</a>
+    </nav>
+  </header>
+
+  <div class="filter-bar">
+    <label for="seafoodFilter">Filter by Seafood:</label>
+    <select id="seafoodFilter">
+      <option value="All">All</option>
+      <option value="Fish">Fish</option>
+      <option value="Crab">Crab</option>
+      <option value="Shrimp">Shrimp</option>
+    </select>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([9.0, 126.1], 8);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    const locations = [
+      { name: "Butuan City", coords: [8.949, 125.543], type: "Shrimp" },
+      { name: "Surigao City", coords: [9.784, 125.489], type: "Crab" },
+      { name: "Tandag", coords: [9.074, 126.198], type: "Fish" }
+    ];
+
+    let markers = [];
+
+    function showMarkers(filter) {
+      markers.forEach(marker => map.removeLayer(marker));
+      markers = [];
+
+      const filtered = filter === "All" ? locations : locations.filter(loc => loc.type === filter);
+
+      filtered.forEach(loc => {
+        const marker = L.marker(loc.coords)
+          .addTo(map)
+          .bindPopup(`<b>${loc.name}</b><br>${loc.type} area`);
+        markers.push(marker);
+      });
+    }
+
+    document.getElementById("seafoodFilter").addEventListener("change", function () {
+      showMarkers(this.value);
+    });
+
+    showMarkers("All");
+  </script>
+</body>
+</html>
